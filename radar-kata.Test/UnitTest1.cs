@@ -52,4 +52,41 @@ public class Radar_Test
         //Then
         Assert.True(isAnOvni);
     }
+    
+    [Theory]
+    [InlineData("aba", true)]
+    [InlineData("abc", false)]
+    public void ShouldValidateIfPalindromWhenReceivedStringOf3Letters(string signal, bool expectedResult)
+    {        
+        //When
+        bool isAnOvni = radar.InterpretSignal(signal);
+        //Then
+        Assert.Equal(expectedResult, isAnOvni);
+    }
+
+    [Theory]
+    [InlineData("abra", false)]
+    [InlineData("anna", true)]
+    public void ShouldValidateIfPalindromWhenReceivedStringOf4Letters(string signal, bool expectedResult)
+    {        
+        //When
+        bool isAnOvni = radar.InterpretSignal(signal);
+        //Then
+        Assert.Equal(expectedResult, isAnOvni);
+    }
+
+    [Theory]
+    [InlineData("race car", true)]
+    [InlineData("race car1", false)]
+    [InlineData("Race car", true)]
+    [InlineData("6DbTbd6", true)]
+    [InlineData("axDbTbd6", false)]
+    [InlineData("Hello, World", false)]
+    public void ShouldValidateIfPalindromWhenReceivedAnyStringWithoutPunctuationSigns(string signal, bool expectedResult)
+    {
+        //When
+        bool isAnOvni = radar.InterpretSignal(signal);
+        //Then
+        Assert.Equal(expectedResult, isAnOvni);
+    }
 }
