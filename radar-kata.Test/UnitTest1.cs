@@ -2,13 +2,18 @@ namespace radar_kata.Test;
 
 public class Radar_Test
 {
+    Radar radar;
+    public Radar_Test()
+    {
+        radar = new();
+    }
+
     [Fact]
     public void ShouldReturnFalseWhenReceivedEmptyString()
     {
         //Given
         string signal = "";
-        //When 
-        Radar radar = new(); 
+        //When        
         bool isAnOvni = radar.InterpretSignal(signal);
         //Then
         Assert.False(isAnOvni);
@@ -19,23 +24,21 @@ public class Radar_Test
     {
         //Given
         string signal = "a";
-        //When 
-        Radar radar = new(); 
+        //When
         bool isAnOvni = radar.InterpretSignal(signal);
         //Then
         Assert.True(isAnOvni);
     }
-
-    [Fact]
-    public void ShouldReturnTrueWhenReceivingSameCharacterTwice()
+    
+    [Theory]
+    [InlineData("aa", true)]
+    [InlineData("ab", false)]
+    public void ShouldReturnTrueWhenReceivingSameCharacterTwice(string signal, bool expectedResult)
     {
-        //Given
-        string signal = "aa";
-        //When 
-        Radar radar = new(); 
+        //When
         bool isAnOvni = radar.InterpretSignal(signal);
         //Then
-        Assert.True(isAnOvni);
+        Assert.Equal(expectedResult, isAnOvni);
     }
 
 }

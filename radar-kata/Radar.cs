@@ -4,10 +4,15 @@ public class Radar
 {
     public bool InterpretSignal(string signal)
     {
-        if(signal == "aa")
+        var elements = signal.ToArray();
+        if(elements.Length < 2)
+        {
+            return signal.Length == 1;
+        }
+        if (elements[0] == elements[1])
         {
             return true;
         }
-        return signal.Length == 1;
+        return false;
     }
 }
