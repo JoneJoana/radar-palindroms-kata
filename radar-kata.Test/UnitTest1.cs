@@ -33,6 +33,7 @@ public class Radar_Test
     [Theory]
     [InlineData("aa", true)]
     [InlineData("ab", false)]
+    [InlineData("Aa", true)]
     public void ShouldReturnTrueWhenReceivingSameCharacterTwice(string signal, bool expectedResult)
     {
         //When
@@ -41,4 +42,14 @@ public class Radar_Test
         Assert.Equal(expectedResult, isAnOvni);
     }
 
+    [Fact]
+    public void ShouldIgnoreSpaces()
+    {
+        //Given
+        string signal = "a a";
+        //When
+        bool isAnOvni = radar.InterpretSignal(signal);
+        //Then
+        Assert.True(isAnOvni);
+    }
 }
