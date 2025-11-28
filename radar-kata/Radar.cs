@@ -1,9 +1,10 @@
+using System.Text.RegularExpressions;
+
 public class Radar
 {
     public bool InterpretSignal(string signal)
-    {
-        var elements = signal.ToLower().ToArray();
-        elements = [.. elements.Where(x => x != ' ')];
+    {       
+        var elements = Regex.Replace(signal, @"[^\w]", "").ToLower().ToArray();
 
         if(elements.Length < 2)
         {

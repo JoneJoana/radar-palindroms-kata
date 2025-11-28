@@ -80,9 +80,10 @@ public class Radar_Test
     [InlineData("race car1", false)]
     [InlineData("Race car", true)]
     [InlineData("6DbTbd6", true)]
+    [InlineData("A man, a plan, a canal, Panama!", true)]
     [InlineData("axDbTbd6", false)]
-    [InlineData("Hello, World", false)]
-    public void ShouldValidateIfPalindromWhenReceivedAnyStringWithoutPunctuationSigns(string signal, bool expectedResult)
+    [InlineData("Hello, World!", false)]
+    public void ShouldValidateIfPalindromWhenReceivedAnyString(string signal, bool expectedResult)
     {
         //When
         bool isAnOvni = radar.InterpretSignal(signal);
